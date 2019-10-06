@@ -1,0 +1,100 @@
+---
+title: "Temperature Blanket"
+date: "06/10/2019"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+
+# Code to create a temperature blanket
+
+So first off, what is a temperature blanket? I crochet (poorly) and wanted to make a blanket for my child's first birthday. A [temperature blanket](http://tlycblog.com/temperatureblankets/) has one row of color for the maximum temperature for each day for the year. 
+
+In order to get an idea of the gradient scale for the colors, I needed the maximum temperature for each day of the past year. This was slightly harder to find (for free!) than expected. Living in the UK, the obvious place to go for the data was the [Met Office](https://www.metoffice.gov.uk/). The only way to get the information I wanted for free was to use the [Weather Observation Website from the Met Office](https://wow.metoffice.gov.uk), however it only allows for downloads in 30 day intervals. 
+
+So after the faff of downloading 12 30 day intervals, I was ready to start. 
+
+## Data import
+
+I have 12 csv files that are the exact same. I want to read them all in and join them all together into 1 dataframe.
+
+I like to use the tidyverse set up of R, so I'll be working with that. The tidyverse is amazing for all sorts of reasons, like its ease of use, syntax and for the glory that is piping!
+
+Since there is also a datetime element to the data, I'll load in the lubridate package as well. 
+
+
+```{r, results = "hide", message=FALSE}
+library(tidyverse)
+library(lubridate)
+
+temps <-
+  list.files(pattern = "*.csv") %>% 
+  map_df(~read_csv(., skip = 1)) %>%
+  select(date_time = "Report Date / Time", temperature = "Air Temperature") %>%
+  mutate(date = date(date_time)) %>%
+  group_by(date) %>%
+  summarise(max_temp = round(max(temperature, na.rm = TRUE))) 
+```
+
+This list all the files in the working directory that end with .csv, then the next line reads all the csv files in. **map_df** is not a function I've used before but it is amazing. From what I can tell is happening, **map_df** is essentially doing a bind rows on all the csv that were just read in, creating one single dataframe. 
+
+From here, I then select only the column I want. There were **A LOT** of empty columns in the csv files. I keep the date time and the air temperature. 
+
+The date is actaully information on the air temperature every 15 minutes for each day. I only need the maximum temperature, so want to extract just the date portion of the date time, and then group by the date and select the maximum. 
+
+This results in a dataframe that contains the high temperature for each day over the entire year. 
+
+```{r}
+head(temps)
+```
+
+
+Now the temperature blanket had 9 different colors, so need to work out what the minimum and maximum temperatures were for the year. 
+
+```{r}
+temps %>%
+  summarise(min(max_temp), 
+            max(max_temp))
+```
+
+From this, I will set anything less than 7 to be purple, and anything over 29 to be red. In between, colors will cover 3 degrees (all temperatures are in celsius)
+
+
+```{r}
+temps <- temps %>%
+  mutate(yarn_color = case_when( max_temp < 7 ~ "purple", 
+                            max_temp >= 7 & max_temp < 10 ~ "dark blue", 
+                            max_temp >= 10 & max_temp < 13 ~ "light blue",
+                            max_temp >= 13 & max_temp < 16 ~ "green", 
+                            max_temp >= 16 & max_temp < 19 ~ "light green", 
+                            max_temp >= 19 & max_temp < 22 ~ "yellow",
+                            max_temp >= 22 & max_temp < 25 ~ "orange", 
+                            max_temp >= 25 & max_temp < 29 ~ "pink", 
+                            max_temp >= 29 ~ "red" )
+  )
+```
+
+
+And for fun, I'll make a plot to see what the blanket will look like when it is completed (I mean the color hues will be different but a general idea).
+
+```{r plot, fig.width=8, fig.height=6}
+temps %>%
+  mutate(crap = 10) %>%
+  filter(date < "2019-09-01") %>%
+  ggplot(aes(x = date, y = crap,  fill = yarn_color, color = yarn_color)) +
+    geom_col() +
+    coord_flip() + 
+    scale_fill_manual(values=c("dark blue","green", "light blue", "light green", 
+                                "orange", "pink", "purple", "red", "yellow") ) + 
+    scale_color_manual(values=c("dark blue","green", "light blue", "light green", 
+                                "orange", "pink", "purple", "red", "yellow") )
+
+```  
+
+The mutate(crap = 10) is to just create a height for the bars in the geom_col() and to make the height the same for all rows. 
+
+# Conclusions
+This was really straight forward and easy code. The worst part was downloading the data in 30 day batches. It was possible to get the data for the entire year, but for a fee, which I wasn't willing to do. 
+
+
