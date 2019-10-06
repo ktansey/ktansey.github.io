@@ -1,5 +1,5 @@
 ---
-title: "Temperature Blanket"
+title: "Code to set up a temperature blanket"
 date: "06/10/2019"
 output: 
   html_document: 
