@@ -2,17 +2,18 @@
 layout: default
 title: CV
 ---
+# CV
 
-# Skills
+## Skills
 
-## Programming and scripting
+### Programming and scripting
 * R (my favorite) : markdown/knitr, shiny, tidyverse, caret
 * Shell/Bash scripting
 * Python : pandas, numpy, matplotlib, scikit-learn
 * SQL
 * SAS 
 
-## Statistics
+### Statistics
 * test statistics
 * regression modelling
 * multivariate analyses
@@ -21,17 +22,17 @@ title: CV
 * instrumental variable analyses
 * machine learning: supervised and unsupervised methods, boosted tree models, elastics nets, neural nets, PCA, clustering
 
-## Genomics
-### Data
+### Genomics
+#### Data
 * Genetics: common, rare, structural, CNVs
 * Sequencing: variant discovery, ChIP-seq, RNA-seq, de novo genomic assembly, de novo transcriptomic assembly
 * Transcriptomics: microarrays
 * Gene sets and pathways
 
-### Software
+#### Software
 GATK, SAMtools, BamTools, bedtools, MACS2, Bowtie, bwa, HISAT2, kallisto, Picard, STAR, DESeq2, DEXSeq, ldscore regression, Trinity, SPAdes, QUAST, Prokka, MAGMA, GCTA, SKAT/SKAT-O, DAVID, INRICH, WGCNA, EIGENSTRAT, plink, plink, vcftools, SHAPEIT2, IMPUTE2, GTOOL, METAL, MACH, rvtests. 
 
-# Work Experience
+## Work Experience
 2018 - Current                 
 Data Scientist at large insurance company based in Wales UK
 
@@ -47,7 +48,7 @@ Research Associate in Bioinformatics at MRC Centre for Neuropsychiatric Genetics
 2010 - 2013                  
 Postdoctorial Researcher at MRC Social, Genetic and Developmental Psychiatry (SGDP) Centre at King's College London
 
-# Teaching Experience
+## Teaching Experience
 [Data manipulation with dplyr workshop](https://github.com/ktansey/satrday_dplyr_workshop)
 
 [Beginners' R workshop](https://github.com/ktansey/beginnersR )
@@ -60,12 +61,12 @@ Postdoctorial Researcher at MRC Social, Genetic and Developmental Psychiatry (SG
 
 Have also done more genetic/genomic based workshops like RNA-seq, ChIP-seq, and about genetic association studies. 
 
-# Education
+## Education
 PhD from Trinity College Dublin in 2009. Thesis title: "Phenotypic and Molecular Genetic Analysis of Autism"
 
 BA from Rutgers University in 2006. Double majored in Cell Biology and Neuroscience, and Psychology. 
 
-# Professional Development
+## Professional Development
 Because I love learning new things!
 
 Completed Udacity Data Analyst nanodegree   
@@ -75,10 +76,10 @@ Completed Data Camp pathways : Data Scientist with R, Data Analyst with R, R Pro
 Completed DataQuest: Data Analyst in R, Data Analyst in Python, Data Scientist in Python
 
 
-# Publications
+## Publications
 I’m a co-author of over 70 peer-reviewed publications. See full list [ORCID](https://orcid.org/0000-0002-9663-3376)
 
-# Shiny Apps
+## Shiny Apps
 [RbG](http://ieushiny.biocompute.org.uk/rbg-app/)               
 [PostExt](https://extubation.shinyapps.io/postext/)                               
 [PreExt](https://extubation.shinyapps.io/preext/)                    
