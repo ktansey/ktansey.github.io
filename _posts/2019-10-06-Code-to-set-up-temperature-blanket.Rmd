@@ -7,8 +7,6 @@ output:
 ---
 
 
-# Code to create a temperature blanket
-
 So first off, what is a temperature blanket? I crochet (poorly) and wanted to make a blanket for my child's first birthday. A [temperature blanket](http://tlycblog.com/temperatureblankets/) has one row of color for the maximum temperature for each day for the year. 
 
 In order to get an idea of the gradient scale for the colors, I needed the maximum temperature for each day of the past year. This was slightly harder to find (for free!) than expected. Living in the UK, the obvious place to go for the data was the [Met Office](https://www.metoffice.gov.uk/). The only way to get the information I wanted for free was to use the [Weather Observation Website from the Met Office](https://wow.metoffice.gov.uk), however it only allows for downloads in 30 day intervals. 
